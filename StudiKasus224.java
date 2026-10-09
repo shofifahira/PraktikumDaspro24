@@ -4,10 +4,10 @@ public class StudiKasus224 {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("Nama mahasiswa: ");
+        System.out.print("Nama mahasiswa: ");
         String nama = input.nextLine();
 
-        System.out.println("Jenis kegiatan (BELMAWA/BAKORMA/MANDIRI/PKM/LAINNYA): ");
+        System.out.print("Jenis kegiatan (BELMAWA/BAKORMA/MANDIRI/PKM/LAINNYA): ");
         String jenisKegiatan = input.nextLine();
 
         System.out.print("Jumlah dokumen: ");
@@ -33,6 +33,27 @@ public class StudiKasus224 {
                 int kurang = 4 - jumlahDokumen;
                 alasan = "Dokumen tidak lengkap (kurang " + kurang + "dokumen). Dana penghargaan tidak diberikan.";
             }
+            } else if (jenisLower.equals("pkm")) {
+                System.out.print("Status pendanaan PKM (1 = lolos, 0 = tidak lolos) : ");
+                int statusPKM = input.nextInt();
+                boolean isLolosPKM = (statusPKM == 1);
+
+                if (dokumenLengkap) {
+                    if (isLolosPKM) {
+                        dapatPenghargaan = true;
+                        alasan = "Selamat! Tim PKM Anda lolos pendanaan dan berhak mendapatkan dana penghargaan.";
+                    } else {
+                        alasan = "PKM tidak lolos pendanaan.";
+                    }
+                } else {
+                    int kurang = 4 - jumlahDokumen;
+                    alasan = "Dokumen tidak lengkap (kurang " + kurang + " dokumen). Dana penghargaan tidak diberikan.";    
+                }
+            } else {
+                alasan = "Kegiatan diluar ketentuan (Lainnya) tidak memperoleh dana penghargaan.";
+            }
+            System.out.println("Status: " + alasan);
+        
         }
-    }
 }
+
